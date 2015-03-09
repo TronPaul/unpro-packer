@@ -26,7 +26,7 @@ Extras
 
 If you're running into timeouts during the build, compile packer yourself with `mitchellh/goamz#180`__.
 
-.. _PR: https://github.com/renat-sabitov-sirca/goamz
+.. _PR: https://github.com/mitchellh/goamz/pull/180
 
 __ PR_
 
