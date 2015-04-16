@@ -26,7 +26,7 @@ def aws_creds(owner):
 def get_vpc(creds, cidr):
     vpc = boto.vpc.VPCConnection(aws_access_key_id=creds.access_key,
             aws_secret_access_key=creds.secret_key, security_token=creds.session_token)
-    return vpc.get_all_vpcs(filters={'cidr':cidr, 'state':'available'})[0]
+    return vpc.get_all_vpcs(filters={'cidr':cidr, 'state':'available'})[-1]
 
 
 def get_subnet(creds, vpc_id, cidr):
@@ -49,7 +49,7 @@ def packer(creds, template, vars_=None):
 
 
 @task
-def build(region='us-east-1', s3_bucket='unpro-ami', owner='767126526297', vpc_cidr='10.0.0.0/16', subnet_cidr='10.0.1.0/24'):
+def build(region='us-east-1', s3_bucket='unpro-ami', owner='767126526297', vpc_cidr='10.0.0.0/16', subnet_cidr='10.0.0.0/24'):
     source_ami = ubuntu_ami_base(region, '14.04', 'amd64', 'ebs', 'hvm')
     creds = aws_creds(owner)
     vpc_id = get_vpc(creds, vpc_cidr).id
