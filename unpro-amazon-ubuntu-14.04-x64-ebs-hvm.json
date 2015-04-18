@@ -8,12 +8,13 @@
   "builders": [ {
     "type": "amazon-ebs",
     "ami_name": "unpro-ubuntu-14.04-x64-ebs-hvm-{{timestamp}}",
-    "instance_type": "t2.micro",
     "region": "{{user `region`}}",
+    "instance_type": "t2.micro",
     "source_ami": "{{user `source_ami`}}",
-    "subnet_id": "{{user `subnet_id`}}",
     "vpc_id": "{{user `vpc_id`}}",
+    "subnet_id": "{{user `subnet_id`}}",
     "associate_public_ip_address": true,
+    "iam_instance_profile": "PackerUnproDeployer",
     "tags": {
       "image-type": "base",
       "build-time": "{{timestamp}}"
@@ -22,10 +23,19 @@
   } ],
   "provisioners" : [ {
     "type": "shell",
+    "script": "provisioners/apt-update.sh"
+  },{
+    "type": "shell",
     "script": "provisioners/salt-bootstrap.sh"
   },{
     "type": "shell",
     "script": "provisioners/install-boto.sh"
+  },{
+    "type": "shell",
+    "script": "provisioners/install-awscli.sh"
+  }, {
+    "type" : "shell",
+    "script": "provisioners/unpro-salt-deployer-key.sh"
   }, {
     "type" : "shell",
     "script": "provisioners/unpro-salt.sh"
