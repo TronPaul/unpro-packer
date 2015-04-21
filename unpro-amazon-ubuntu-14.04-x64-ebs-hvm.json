@@ -14,7 +14,7 @@
     "vpc_id": "{{user `vpc_id`}}",
     "subnet_id": "{{user `subnet_id`}}",
     "associate_public_ip_address": true,
-    "iam_instance_profile": "PackerUnproDeployer",
+    "iam_instance_profile": "AMIInstance",
     "tags": {
       "image-type": "base",
       "build-time": "{{timestamp}}"
