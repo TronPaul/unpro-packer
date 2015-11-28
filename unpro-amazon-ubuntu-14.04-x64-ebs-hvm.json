@@ -24,21 +24,21 @@
   "provisioners" : [ {
     "type": "shell",
     "script": "provisioners/apt-update.sh"
-  },{
+  }, {
     "type": "shell",
-    "script": "provisioners/salt-bootstrap.sh"
-  },{
+    "script": "provisioners/install-pip.sh"
+  }, {
     "type": "shell",
     "script": "provisioners/install-boto.sh"
-  },{
+  }, {
     "type": "shell",
     "script": "provisioners/install-awscli.sh"
   }, {
-    "type" : "shell",
-    "script": "provisioners/unpro-salt-deployer-key.sh"
+    "type": "shell",
+    "script": "provisioners/install-libgit2.sh"
   }, {
-    "type" : "shell",
-    "script": "provisioners/unpro-salt.sh"
+    "type": "shell",
+    "script": "provisioners/salt-bootstrap.sh"
   }, {
     "type": "shell",
     "script": "provisioners/ami-final-prep.sh"
